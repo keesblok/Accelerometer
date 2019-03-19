@@ -11,7 +11,7 @@ uint32_t endMillis = 0;
 uint32_t squareTime = 0;
 
 bool checkLDR(uint8_t pin) {
-    if (analogRead(pin)>900) {
+    if (analogRead(pin) > 900) {
         return true;
     } else {
         return false;
