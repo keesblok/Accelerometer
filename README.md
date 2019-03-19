@@ -1,10 +1,11 @@
 # Accelerometer
 
-## Desription
+## Description
 
 The Arduino Accelerometer is a measuring instrument that calculates the acceleration of an object in a specified distance from standstill.
 
-Example of output:
+## Example of output
+
 ```
 Ready for start
 Time started
