@@ -30,13 +30,6 @@ void setup() {
 }
 
 void loop() {
-/*  
-    Serial.print(checkLDRInt(LDR1));
-    Serial.print("\t");
-    Serial.println(checkLDRInt(LDR2));
-    delay(200);
-*/
-
    if(checkLDR(LDR1) && checkLDR(LDR2)) {
        if(!ready) {
            Serial.println("Ready for start");
