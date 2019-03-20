@@ -25,15 +25,15 @@ void setup() {
 }
 
 void loop() {
-   if(checkLDR(LDR1) && checkLDR(LDR2)) {
-       if(!ready) {
+   if (checkLDR(LDR1) && checkLDR(LDR2)) {
+       if (!ready) {
            Serial.println("Ready for start");
            ready = true;
        }
-       if(!checkLDR(LDR1)) {
+       if (!checkLDR(LDR1)) {
            startMillis = millis();
            Serial.println("Time started");
-           while(checkLDR(LDR2)) {
+           while (checkLDR(LDR2)) {
                cycles++;
            }
            endMillis = millis();
@@ -45,7 +45,7 @@ void loop() {
            loop();
        }
     } else {
-       if(ready) {
+       if (ready) {
            Serial.println("Not yet ready for start");
            ready = false;
        }
