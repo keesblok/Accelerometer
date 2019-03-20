@@ -1,13 +1,13 @@
-const int LDR1 = A1;
-const int LDR2 = A2;
-bool ready = false;
-const int threshold = 900; // Use checkLDRInt() for getting a good threshold in your circumstances
+const uint8_t LDR1 = A1;
+const uint8_t LDR2 = A2;
+const uint16_t threshold = 900; // Use checkLDRInt() for getting a good threshold in your circumstances
 const float distance = 150.00; // in cm
 float acceleration = 0;
 uint32_t cycles = 0;
 uint32_t startMillis = 0;
 uint32_t endMillis = 0;
 uint32_t squareTime = 0;
+bool ready = false;
 
 bool checkLDR(uint8_t pin) {
     return (analogRead(pin) > 900);
