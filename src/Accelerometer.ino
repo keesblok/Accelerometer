@@ -1,9 +1,8 @@
-#define LDR1 A1
-#define LDR2 A2
-
+const int LDR1 = A1;
+const int LDR2 = A2;
 bool ready = false;
-int threshold = 900;
-float distance = 150.00; // in cm
+const int threshold = 900; // Use checkLDRInt for getting a good treshold in your circumstances
+const float distance = 150.00; // in cm
 float acceleration = 0;
 uint32_t cycles = 0;
 uint32_t startMillis = 0;
@@ -11,14 +10,10 @@ uint32_t endMillis = 0;
 uint32_t squareTime = 0;
 
 bool checkLDR(uint8_t pin) {
-    if (analogRead(pin) > 900) {
-        return true;
-    } else {
-        return false;
-    }
+    return (analogRead(pin) > 900);
 }
 
-int checkLDRInt(uint8_t pin) {
+uint16_t checkLDRInt(uint8_t pin) {
     return analogRead(pin);
 }
 
@@ -35,24 +30,24 @@ void loop() {
            Serial.println("Ready for start");
            ready = true;
        }
-        if(!checkLDR(LDR1)) {
-            startMillis = millis();
-            Serial.println("Time started");
-            while(checkLDR(LDR2)) {
-                cycles++;
-            }
-            endMillis = millis();
-            Serial.println((String) cycles + " cycles in " + (endMillis-startMillis) + " milliseconds");
-            Serial.println((String)"Such that" + ((float)(endMillis-startMillis)/cycles) + " milliseconds per cycle");
-            squareTime = square(endMillis - startMillis);
-            acceleration = 2*distance/squareTime/100.00*1000000; // in m/(s*s)
-            Serial.println((String)"Acceleration is " + acceleration + " m/(s*s)");
-            loop();
-        }
+       if(!checkLDR(LDR1)) {
+           startMillis = millis();
+           Serial.println("Time started");
+           while(checkLDR(LDR2)) {
+               cycles++;
+           }
+           endMillis = millis();
+           Serial.println((String) cycles + " cycles in " + (endMillis-startMillis) + " milliseconds");
+           Serial.println((String)"Such that" + ((float)(endMillis-startMillis)/cycles) + " milliseconds per cycle");
+           squareTime = square(endMillis - startMillis);
+           acceleration = 2*distance/squareTime/100.00*1000000; // in m/(s*s)
+           Serial.println((String)"Acceleration is " + acceleration + " m/(s*s)");
+           loop();
+       }
     } else {
-        if(ready) {
-            Serial.println("Not yet ready for start");
-            ready = false;
-        }
+       if(ready) {
+           Serial.println("Not yet ready for start");
+           ready = false;
+       }
     }
 }
